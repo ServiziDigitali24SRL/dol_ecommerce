@@ -297,8 +297,7 @@ const P=[{"pg": 3, "nome": "Buono della Tuscia", "cod": "2155", "img": "img/p003
 const K='dol_sel_v1', KC='dol_corr_v1';
 const SUPA='https://dmgnzqxcrmcgpmtkimbs.supabase.co/rest/v1';
 const CHIAVE='sb_publishable_0-1VQk1y3JciXKdWoowvPA_F3V5Ab51';   // chiave pubblicabile: puo' solo scrivere qui
-const HDR={apikey:CHIAVE,Authorization:'Bearer '+CHIAVE,'content-type':'application/json',
-           Prefer:'resolution=merge-duplicates,return=minimal'};
+const HDR={apikey:CHIAVE,Authorization:'Bearer '+CHIAVE,'content-type':'application/json'};
 // si spedisce solo dal sito pubblicato: da una copia locale resta tutto sul dispositivo
 const online=location.protocol==='https:'&&/github\.io$/.test(location.hostname);
 function disp(){let d=null; try{d=localStorage.getItem('dol_disp')}catch(e){}
@@ -310,8 +309,8 @@ let statoInvio='';
 function mostraStato(t){statoInvio=t; const e=document.getElementById('invio'); if(e) e.textContent=t;}
 async function mandaSelezione(){
  if(!online) return;
- try{const r=await fetch(SUPA+'/dol_selezione?on_conflict=dispositivo',{method:'POST',headers:HDR,
-   body:JSON.stringify({dispositivo:disp(),pagine:[...sel].sort((a,b)=>a-b),aggiornato_il:new Date().toISOString()})});
+ try{const r=await fetch(SUPA+'/rpc/dol_salva_selezione',{method:'POST',headers:HDR,
+   body:JSON.stringify({p_dispositivo:disp(),p_pagine:[...sel].sort((a,b)=>a-b)})});
   mostraStato(r.ok?'  ·  salvato sul server':'  ·  non inviato');}
  catch(e){mostraStato('  ·  non inviato');}}
 async function riprovaCorrezioni(){
@@ -321,12 +320,9 @@ async function riprovaCorrezioni(){
  for(const pg of l){
   const p=P.find(x=>x.pg===+pg); const testo=C[pg]||'';
   try{
-   const r = testo
-    ? await fetch(SUPA+'/dol_correzione?on_conflict=dispositivo,pagina',{method:'POST',headers:HDR,
-       body:JSON.stringify({dispositivo:disp(),pagina:+pg,prodotto:p?p.nome:'',codice:p?(p.cod||''):'',
-                            testo:testo,aggiornato_il:new Date().toISOString()})})
-    : await fetch(SUPA+'/dol_correzione?dispositivo=eq.'+encodeURIComponent(disp())+'&pagina=eq.'+(+pg),
-       {method:'DELETE',headers:{apikey:CHIAVE,Authorization:'Bearer '+CHIAVE}});
+   const r=await fetch(SUPA+'/rpc/dol_salva_correzione',{method:'POST',headers:HDR,
+    body:JSON.stringify({p_dispositivo:disp(),p_pagina:+pg,p_prodotto:p?p.nome:'',
+                         p_codice:p?(p.cod||''):'',p_testo:testo})});
    if(!r.ok) restano.push(pg);}
   catch(e){restano.push(pg);}
  }

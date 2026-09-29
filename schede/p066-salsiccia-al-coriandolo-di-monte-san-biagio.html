@@ -306,17 +306,9 @@ class="tag">Foto</button><button class="tag">Valori nutrizionali</button></div>
   if(manca) l.push(pg); try{localStorage.setItem('dol_sospesi_v1',JSON.stringify(l))}catch(e){} }
  function spedisci(testo){
   if(!online){return}
-  var h={apikey:CHIAVE,Authorization:'Bearer '+CHIAVE,'content-type':'application/json'};
-  var url,opt;
-  if(testo){ h.Prefer='resolution=merge-duplicates,return=minimal';
-   url=SUPA+'/dol_correzione?on_conflict=dispositivo,pagina';
-   opt={method:'POST',headers:h,body:JSON.stringify({dispositivo:disp(),pagina:PG,prodotto:NOME,
-        codice:COD,testo:testo,aggiornato_il:new Date().toISOString()})};
-  } else {
-   url=SUPA+'/dol_correzione?dispositivo=eq.'+encodeURIComponent(disp())+'&pagina=eq.'+PG;
-   opt={method:'DELETE',headers:h};
-  }
-  fetch(url,opt)
+  fetch(SUPA+'/rpc/dol_salva_correzione',{method:'POST',
+   headers:{apikey:CHIAVE,Authorization:'Bearer '+CHIAVE,'content-type':'application/json'},
+   body:JSON.stringify({p_dispositivo:disp(),p_pagina:PG,p_prodotto:NOME,p_codice:COD,p_testo:testo})})
   .then(function(r){ if(r.ok){segna(PG,false); st.textContent=testo?'Inviato ✓':'Correzione ritirata';}
                      else{segna(PG,true); st.textContent='Salvato qui, non sono riuscito a inviarlo';} })
   .catch(function(){segna(PG,true); st.textContent='Salvato qui, lo invio appena torna la rete';});
