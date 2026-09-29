@@ -322,7 +322,7 @@ function elenco(){
  if(!s.length) return '';
  return 'Prodotti da mettere sull\'e-commerce ('+s.length+'):\n'+s.map(p=>'• '+p.nome+(p.cod?' — cod. '+p.cod:'')).join('\n');
 }
-document.getElementById('wa').onclick=()=>{const t=elenco(); if(!t){alert;return} window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');};
+document.getElementById('wa').onclick=()=>{const t=elenco(); if(!t){alert('Prima seleziona almeno un prodotto.');return} window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');};
 document.getElementById('copia').onclick=async()=>{const t=elenco(); if(!t)return;
  try{await navigator.clipboard.writeText(t); document.getElementById('copia').textContent='Copiato';
   setTimeout(()=>document.getElementById('copia').textContent='Copia',1500);}catch(e){
