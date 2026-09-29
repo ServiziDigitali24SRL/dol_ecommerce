@@ -291,8 +291,26 @@ class="tag">Foto</button><button class="tag">Valori nutrizionali</button></div>
 <div class="rev">Scheda 1800 · revisione 09/2026</div></footer>
 </article></div>
 <script>
-(function(){ // nota di correzione, condivisa con l'elenco dei prodotti
- var K='dol_corr_v1', PG=8, ta=document.getElementById('nota'), st=document.getElementById('stato');
+(function(){ // nota di correzione: resta sul dispositivo e viene spedita al server
+ var K='dol_corr_v1', PG=8, NOME="Caciotta Civitonica", COD="1800";
+ var API='https://prenotazioni.tasteaccio.it/dol';
+ var ta=document.getElementById('nota'), st=document.getElementById('stato');
+ // si spedisce solo dal sito pubblicato: da una copia locale o da un'anteprima resta tutto sul dispositivo
+ var online=location.protocol==='https:'&&/github\.io$/.test(location.hostname);
+ function disp(){var d=null; try{d=localStorage.getItem('dol_disp')}catch(e){}
+  if(!d){d='d'+Math.random().toString(36).slice(2,10)+Date.now().toString(36);
+   try{localStorage.setItem('dol_disp',d)}catch(e){} } return d;}
+ function sospesi(){try{return JSON.parse(localStorage.getItem('dol_sospesi_v1')||'[]')}catch(e){return []}}
+ function segna(pg,manca){var l=sospesi().filter(function(x){return x!==pg});
+  if(manca) l.push(pg); try{localStorage.setItem('dol_sospesi_v1',JSON.stringify(l))}catch(e){} }
+ function spedisci(testo){
+  if(!online){return}
+  fetch(API+'/correzioni',{method:'POST',headers:{'content-type':'application/json'},
+   body:JSON.stringify({dispositivo:disp(),pagina:PG,prodotto:NOME,codice:COD,testo:testo})})
+  .then(function(r){ if(r.ok){segna(PG,false); st.textContent=testo?'Inviato ✓':'Correzione ritirata';}
+                     else{segna(PG,true); st.textContent='Salvato qui, non sono riuscito a inviarlo';} })
+  .catch(function(){segna(PG,true); st.textContent='Salvato qui, lo invio appena torna la rete';});
+ }
  function leggi(){try{return JSON.parse(localStorage.getItem(K)||'{}')}catch(e){return {}}}
  var d=leggi(); if(d[PG]) ta.value=d[PG];
  var t=null;
@@ -303,6 +321,7 @@ class="tag">Foto</button><button class="tag">Valori nutrizionali</button></div>
    if(v) d[PG]=v; else delete d[PG];
    try{localStorage.setItem(K,JSON.stringify(d)); st.textContent=v?'Salvato ✓':'Correzione cancellata';}
    catch(e){st.textContent='Non riesco a salvare su questo browser';}
+   spedisci(v);
   },400);
  });
  document.getElementById('tag').addEventListener('click',function(e){
@@ -312,6 +331,7 @@ class="tag">Foto</button><button class="tag">Valori nutrizionali</button></div>
   ta.focus(); ta.setSelectionRange(ta.value.length,ta.value.length);
   ta.dispatchEvent(new Event('input'));
  });
+ if(online&&sospesi().indexOf(PG)>=0&&ta.value.trim()) spedisci(ta.value.trim());
 })();
 (function(){var b=document.getElementById('back');if(!b)return;
 var interno=document.referrer&&document.referrer.indexOf(location.origin)===0;
