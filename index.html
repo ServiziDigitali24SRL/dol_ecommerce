@@ -305,7 +305,7 @@ function render(){
   html+='<li class="riga'+(sel.has(p.pg)?' sel':'')+'" data-pg="'+p.pg+'">'+
    '<span class="v">✓</span>'+(p.img?'<img src="'+p.img+'" alt="" loading="lazy">':'')+
    '<span class="t"><span class="n">'+p.nome+'</span><br><span class="c">'+(p.cod||'')+'</span></span>'+
-   (p.file?'<a class="sch" href="schede/'+p.file+'" target="_blank" rel="noopener">Scheda</a>':'')+'</li>';
+   (p.file?'<a class="sch" href="schede/'+p.file+'">Scheda</a>':'')+'</li>';
  });
  lista.innerHTML=html;
 }
