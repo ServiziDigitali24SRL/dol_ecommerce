@@ -293,7 +293,8 @@ class="tag">Foto</button><button class="tag">Valori nutrizionali</button></div>
 <script>
 (function(){ // nota di correzione: resta sul dispositivo e viene spedita al server
  var K='dol_corr_v1', PG=29, NOME="Pecorino foglia di fico Affinatura stagionale", COD="2500";
- var API='https://prenotazioni.tasteaccio.it/dol';
+ var SUPA='https://dmgnzqxcrmcgpmtkimbs.supabase.co/rest/v1';
+ var CHIAVE='sb_publishable_0-1VQk1y3JciXKdWoowvPA_F3V5Ab51';   // chiave pubblicabile: puo' solo scrivere qui
  var ta=document.getElementById('nota'), st=document.getElementById('stato');
  // si spedisce solo dal sito pubblicato: da una copia locale o da un'anteprima resta tutto sul dispositivo
  var online=location.protocol==='https:'&&/github\.io$/.test(location.hostname);
@@ -305,8 +306,17 @@ class="tag">Foto</button><button class="tag">Valori nutrizionali</button></div>
   if(manca) l.push(pg); try{localStorage.setItem('dol_sospesi_v1',JSON.stringify(l))}catch(e){} }
  function spedisci(testo){
   if(!online){return}
-  fetch(API+'/correzioni',{method:'POST',headers:{'content-type':'application/json'},
-   body:JSON.stringify({dispositivo:disp(),pagina:PG,prodotto:NOME,codice:COD,testo:testo})})
+  var h={apikey:CHIAVE,Authorization:'Bearer '+CHIAVE,'content-type':'application/json'};
+  var url,opt;
+  if(testo){ h.Prefer='resolution=merge-duplicates,return=minimal';
+   url=SUPA+'/dol_correzione?on_conflict=dispositivo,pagina';
+   opt={method:'POST',headers:h,body:JSON.stringify({dispositivo:disp(),pagina:PG,prodotto:NOME,
+        codice:COD,testo:testo,aggiornato_il:new Date().toISOString()})};
+  } else {
+   url=SUPA+'/dol_correzione?dispositivo=eq.'+encodeURIComponent(disp())+'&pagina=eq.'+PG;
+   opt={method:'DELETE',headers:h};
+  }
+  fetch(url,opt)
   .then(function(r){ if(r.ok){segna(PG,false); st.textContent=testo?'Inviato ✓':'Correzione ritirata';}
                      else{segna(PG,true); st.textContent='Salvato qui, non sono riuscito a inviarlo';} })
   .catch(function(){segna(PG,true); st.textContent='Salvato qui, lo invio appena torna la rete';});
