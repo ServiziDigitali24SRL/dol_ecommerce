@@ -1,0 +1,342 @@
+<title>Stracchino fresco Etrusco</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --verde:#62794A; --verde-scuro:#4C5F39; --verde-tenue:#EDF0E6;
+  --inchiostro:#3D3D3B; --inchiostro-soft:#5E5E59; --carta:#F7F7F3; --superficie:#FFFFFF;
+  --riga:#DBDCD2; --riga-forte:#C3C5B6; --ocra:#8A6A1F; --ocra-tenue:#F6EFDF;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --verde:#9DB47F; --verde-scuro:#B6C99B; --verde-tenue:#242A1E;
+  --inchiostro:#E7E7E1; --inchiostro-soft:#A9A9A1; --carta:#171815; --superficie:#1E201C;
+  --riga:#33352E; --riga-forte:#474A40; --ocra:#D9B978; --ocra-tenue:#2B2418; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --verde:#9DB47F; --verde-scuro:#B6C99B; --verde-tenue:#242A1E;
+  --inchiostro:#E7E7E1; --inchiostro-soft:#A9A9A1; --carta:#171815; --superficie:#1E201C;
+  --riga:#33352E; --riga-forte:#474A40; --ocra:#D9B978; --ocra-tenue:#2B2418; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--carta);color:var(--inchiostro);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;font-size:15px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+.foglio{max-width:880px;margin:0 auto;padding-block:clamp(20px,4vw,44px);padding-left:16px;padding-right:16px}
+.carta{background:var(--superficie);border:1px solid var(--riga);border-radius:2px;
+  box-shadow:0 1px 0 var(--riga),0 18px 40px -32px rgba(0,0,0,.4)}
+header.testata{display:flex;gap:clamp(16px,3vw,32px);align-items:flex-start;flex-wrap:wrap;
+  padding:clamp(20px,3.4vw,34px);border-bottom:2px solid var(--verde)}
+.logo{width:clamp(76px,9vw,104px);height:auto;flex:none}
+.dolA{fill:var(--verde)} .dolB{fill:var(--inchiostro)}
+.intestazione{flex:1 1 320px;min-width:0}
+.occhiello{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--verde);font-weight:600;margin:0 0 6px}
+h1{font-family:Newsreader,Georgia,serif;font-weight:600;font-size:clamp(25px,3.6vw,34px);line-height:1.12;
+  margin:0 0 8px;text-wrap:balance}
+.denominazione{margin:0;color:var(--inchiostro-soft);font-size:14px;max-width:56ch}
+.codici{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.codice{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;border:1px solid var(--riga-forte);
+  padding:3px 9px;border-radius:2px;color:var(--inchiostro-soft)}
+.codice b{color:var(--inchiostro);font-weight:500}
+.corpo{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:clamp(20px,3vw,34px);
+  padding:clamp(20px,3.4vw,34px)}
+@media (max-width:720px){.corpo{grid-template-columns:1fr}}
+figure{margin:0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--riga);border-radius:2px}
+figcaption{font-size:11.5px;color:var(--inchiostro-soft);margin-top:8px;line-height:1.4}
+h2{font-family:Newsreader,Georgia,serif;font-size:13px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--verde);margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--riga);text-wrap:balance}
+section+section{margin-top:26px}
+p{margin:0 0 12px;max-width:66ch}
+dl.dati{display:grid;grid-template-columns:auto 1fr;gap:7px 18px;margin:0;font-size:14px}
+dl.dati dt{color:var(--inchiostro-soft);white-space:nowrap}
+dl.dati dd{margin:0}
+@media (max-width:440px){dl.dati{grid-template-columns:1fr;gap:2px 0}dl.dati dd{margin-bottom:9px}}
+table{width:100%;border-collapse:collapse;font-size:14px}
+.tabella-wrap{overflow-x:auto}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--riga)}
+thead th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--inchiostro-soft);font-weight:600;
+  border-bottom:1px solid var(--riga-forte)}
+td.num{text-align:right;font-family:"IBM Plex Mono",monospace;white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tr.totale td{font-weight:600;background:var(--verde-tenue)}
+.fonte{font-size:12px;color:var(--inchiostro-soft);margin-top:9px;line-height:1.45}
+.fonte code{font-family:"IBM Plex Mono",monospace;font-size:11.5px}
+.marca{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:1px;flex:none}
+.m-prod{background:var(--verde)} .m-calc{background:transparent;border:1.5px solid var(--verde)}
+.m-manca{background:var(--ocra)}
+.legenda{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--inchiostro-soft);
+  padding:12px clamp(20px,3.4vw,34px);border-top:1px solid var(--riga);background:var(--carta)}
+.avviso{border-left:3px solid var(--ocra);background:var(--ocra-tenue);padding:11px 14px;font-size:13px;
+  color:var(--inchiostro);margin:14px 0 0;border-radius:0 2px 2px 0}
+.avviso b{color:var(--ocra)}
+ul.manca{list-style:none;margin:0;padding:0;font-size:14px;columns:2;column-gap:28px}
+ul.manca li{break-inside:avoid;padding:4px 0}
+@media (max-width:560px){ul.manca{columns:1}}
+footer{padding:clamp(18px,3vw,26px) clamp(20px,3.4vw,34px);border-top:2px solid var(--verde);
+  display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between;font-size:12px;color:var(--inchiostro-soft)}
+footer b{color:var(--inchiostro);font-weight:600}
+footer .rev{text-align:right}
+@media (max-width:560px){footer .rev{text-align:left}}
+a{color:var(--verde-scuro)}
+</style>
+<style>.indietro{display:inline-block;margin:0 0 12px;padding:9px 14px;border:1px solid var(--riga-forte);
+border-radius:2px;text-decoration:none;color:var(--inchiostro);background:var(--superficie);font-size:13.5px}
+.indietro:hover{background:var(--verde-tenue);border-color:var(--verde)}
+.corr textarea{width:100%;min-height:96px;padding:10px 12px;border:1px solid var(--riga-forte);border-radius:2px;
+background:var(--superficie);color:var(--inchiostro);font:inherit;font-size:14px;resize:vertical}
+.corr textarea:focus{outline:2px solid var(--verde);outline-offset:-1px}
+.tag{display:inline-block;margin:0 6px 6px 0;padding:5px 10px;border:1px solid var(--riga-forte);border-radius:99px;
+background:var(--superficie);color:var(--inchiostro-soft);font:inherit;font-size:12.5px;cursor:pointer}
+.tag:hover{background:var(--verde-tenue);border-color:var(--verde);color:var(--inchiostro)}
+.stato{font-size:12.5px;color:var(--verde);margin-left:2px}
+.corr .fonte{margin-bottom:10px}</style>
+<div class="foglio">
+<a class="indietro" id="back" href="../index.html">&larr; Tutti i prodotti</a>
+<article class="carta">
+<header class="testata"><svg class="logo" role="img" aria-label="DOL — Di Origine Laziale" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 595.3 505.5"  xml:space="preserve">
+<g>
+	<path class="dolA" d="M585.4,345.4c-1.8-2.5-5-3.5-7.8-2.3c-37.1,15.7-76.4,23.3-120.1,23.3c-46.7,0-89.9-8.7-128-16.3
+		c-19.8-4-38.4-7.7-54.8-9.6c-28.7-3.3-56.5-5-82.7-5c-125.4,0-177.9,37.4-180.1,39c-2.5,1.8-3.4,5.2-2,8c1.3,2.8,4.5,4.3,7.5,3.5
+		c0.8-0.2,80.8-21.1,165.1-21.1c30.3,0,57.8,2.7,81.6,8c61.7,13.8,117.8,20.8,166.5,20.8c115.1,0,152.7-38.6,154.3-40.2
+		C586.9,351.4,587.2,348,585.4,345.4"/>
+	<path class="dolB" d="M550.2,29.8c-0.2,0-0.3,0-0.5,0c-1.8,0.3-3.7,0.4-14.2,16.1c-2.5,3.8-6.8,11.2-11.6,20.3
+		c11-19,19.3-30.5,19.3-30.5S547.3,30.2,550.2,29.8"/>
+	<path class="dolB" d="M565.6,5c-4.4-1.3-8.4-1-11.5-1c-11.9,0-25.6,9.1-41.1,27.4c-26,30.6-38.2,55.6-45.2,68.9
+		c-4.4,8.3-8.4,16.5-12.3,24.6c-3.8,7.9-7.3,15.7-10.6,23.6c-5.4,4.1-10.8,8.2-16.3,12.2c-11.6,8.5-23.9,17.1-37.4,22.6
+		c-0.1-4.4-0.5-8.6-1.1-12.6c-10.2-43.8-50.9-47.6-62.7-47.7c-16.4,1.2-32.2,7.1-47.3,17.8c-16.9,12-30.5,27.2-40.5,45.6
+		c-5.3,9.2-9.1,18.4-11.4,27.7c-9.9,16.8-19.5,29.8-28.8,39c-5.4,5.3-10.7,9.3-16,12c-3.6,2.3-7.9,3.5-12.8,3.5
+		c-4.1,0-7.5-1-10.1-3.1c-2.6-2.1-3.9-4.8-3.9-8.1c0-0.8,0.3-2.5,0.8-5.1c4.9-13.4,11.6-29.8,20.2-49.1c3.2-7.3,7.1-15.9,11.5-25.7
+		c7.1-15.9,15.7-34.9,25.8-57.2L231,84.1l26-58.1c1-2.3,0.8-4.6-0.6-6.8c-1.4-2.2-3.4-3.3-6-3.3h-24.8c-3.4,0-6.5,0.8-9.3,2.3
+		c-2.8,1.6-4.9,3.8-6.2,6.6l-46.2,104c-1,2.6-2.2,5.2-3.5,7.8c-1.3,2.6-2.5,5.4-3.5,8.5c-0.5,0-0.9-0.1-1.2-0.4
+		c-0.5-1-1.5-2.3-3.1-3.9c-4.9-5.7-10.3-9.8-16.1-12.2c-5.8-2.5-13.3-3.7-22.3-3.7c-11.6,0-23.9,3.3-36.7,9.9
+		c-12.8,6.6-24.7,16.2-35.7,28.7c-11,12.6-19.5,27.1-25.4,43.6c-5.2,14.2-7.8,27.5-7.8,40c0,6.5,0.8,12.7,2.3,18.6
+		c2.8,11.1,8.1,19.7,15.7,25.8c7.6,6.1,17.4,9.1,29.3,9.1c19.1,0,37.1-8.4,53.9-25.2c1-1,2.1-1.4,3.3-1c1.2,0.4,2,1.1,2.5,2.1
+		c3.4,7,9,12.7,16.9,17.3c7.9,4.5,17,6.8,27.4,6.8c18.1,0,33.5-6,46.2-18c3.9-3.7,7.8-7.9,11.6-12.5c3.4-4.1,6.8-8.5,10.2-13.2
+		c1.3,4.6,3,9.1,5.3,13.3c5.4,10,13.1,17.8,22.9,23.5c9.8,5.7,20.9,8.5,33.4,8.5c11.6,0,23.3-2.9,34.9-8.7
+		c11.6-5.8,22.5-14.6,32.6-26.2c0,0,11.7-12.8,19.8-29.5c3-6.1,5.5-12.1,7.7-18.1c14.4-2.9,28.4-10,41.4-18.3c-3.2,13.1-5,26-5,38.4
+		c0,18.4,4.1,33.1,12.2,44.2c4.4,6,10,10.3,16.8,13.1c5.9,2.4,12.6,3.6,20.2,3.6c14.7,0,27.8-4.1,39.2-12.4
+		c11.4-8.3,22-19.7,31.8-34.1c3.1-4.9,7.5-12.3,13.2-22.1c2.3-4.7,3.5-8.8,3.5-12.4c0-3.6-1-6.5-3.1-8.7c-2.1-2.2-4.4-3.3-7-3.3
+		c-3.9,0-6.7,1.8-8.5,5.4c-16.6,27.4-31.7,44.8-45.4,52c-4.4,2.6-8.7,3.9-12.8,3.9c-5.4,0-9.8-2.3-13-7c-1.9-2.7-3.1-6.3-3.9-10.5
+		c-0.6-3.1-0.9-6.5-0.9-10.4c0-4,0.4-8.2,0.9-12.5c1.4-10.6,4.4-22.4,9.2-35.2c-0.5,1.5,2.6-7.5,7.2-16.9c0.5-1,1.1-1.7,1.6-2.3
+		c4.2-6.3,14.7-13.9,17.6-16.1c26.3-19.6,37.7-31.9,51.7-48.4c15.4-18.2,18.4-25.4,24.5-36.4c7.5-13.6,9.9-28.5,10.5-38.5
+		C587.9,13.6,573.7,7.3,565.6,5 M134,196.8c-4.4,9.1-6.9,14.1-7.4,15.1c-4.9,10.4-11.4,19.7-19.6,27.9c-8.2,8.3-16.3,14.7-24.4,19.2
+		c-8.1,4.5-14.8,6.8-20,6.8c-9.3,0-14-5.8-14-17.5c0-7.5,1.9-16.8,5.8-27.9c8.3-21.5,21.5-38.5,39.6-51.2
+		c10.4-6.7,20.1-10.1,29.1-10.1c5.2,0,9.4,1.3,12.6,3.9c3.2,2.6,4.8,6.3,4.8,11.2C140.6,180.2,138.4,187.7,134,196.8 M364.7,165.7
+		c1.7,3.5,2.8,7.9,3,13.3c0.1,3.4,0.1,6.6-0.1,9.6C351.4,188.3,341.8,167,364.7,165.7 M343.7,243.1c-1.3,1.4-4.6,5-8.3,8.3
+		c0,0,0,0.1,0,0.1c-0.3,0.2-0.6,0.4-0.9,0.7c-1,0.9-2.1,1.8-3.2,2.6c-4.7,3.6-9.5,6.4-14.4,8.4c-6.3,2.6-12.4,3.9-18.1,3.9
+		c-8.8,0-16-2.9-21.7-8.7c-5.7-5.8-8.5-14-8.5-24.6c0-5.4,0.6-10.3,1.9-14.7c4.9-21.5,13.5-37.8,25.8-49.1
+		c8.5-7.8,17.4-13.1,26.5-15.8c0.1,0,0.1-0.1,0.2-0.1c0,0,0.6-0.2,1.5-0.4c0.7-0.2,1.4-0.3,2.1-0.5c-14.9,23-4.7,59.1,32.1,66.9
+		c0.4,0.1,0.8,0.1,1.1,0.2C353.7,233.5,345.8,241,343.7,243.1 M550,65.5L550,65.5c0,0,0,0.1-0.1,0.1c-5.6,11.8-14.8,25-28.4,37.7
+		c-3.2,3.2-6.4,6-9.3,8.3c-0.3,0.2-0.6,0.4-0.9,0.7c-2.5,2-5.6,4.1-9.5,6.7c-3.4,2.2-5.8,3.7-5.7,3.6c9.1-22.1,19.2-41.5,27.8-56.3
+		c4.8-9,9.1-16.5,11.6-20.3C546,30.2,547.9,30,549.7,29.8c0.2,0,0.4,0,0.5,0c0.4-0.1,0.9-0.1,1.3,0C558.4,31.3,558.9,46.4,550,65.5"
+		/>
+	<path class="dolB" d="M78.7,464.7c-0.4-0.5-0.9-0.7-1.5-0.7c-0.8,0-1.4,0.4-1.8,1.1c-3.3,5.6-6.4,9.2-9.4,10.8
+		c-0.9,0.5-1.7,0.8-2.7,0.8c-0.8,0-1.5-0.2-2-0.6c-0.6-0.4-0.9-1-0.9-1.7c0-0.6,0.3-1.6,0.9-3c0.8-2,1.9-4.8,3.5-8.4
+		c1.6-3.6,3.6-8.2,6.2-13.8c0.2-0.5,0.2-1-0.1-1.5c-0.3-0.5-0.7-0.7-1.2-0.7h-5.1c-0.7,0-1.4,0.2-2,0.6c-0.6,0.4-1.1,0.9-1.3,1.6
+		c-2.8,6.3-4.9,11-6.2,14c-0.3,0.8-0.6,1.5-0.9,2.3c-3.2,5.4-6.3,8.9-9.2,10.4c-0.8,0.5-1.6,0.7-2.7,0.7c-0.9,0-1.6-0.2-2.1-0.6
+		c-0.5-0.4-0.8-1-0.8-1.7c0-0.2,0.1-0.5,0.2-1c1-2.8,2.4-6.2,4.2-10.2c1.8-4,4.3-9.7,7.7-17.2l8.8-19.5c0.2-0.5,0.2-0.9-0.1-1.4
+		c-0.3-0.5-0.7-0.7-1.2-0.7h-5.2c-0.7,0-1.3,0.2-1.9,0.5c-0.6,0.3-1,0.8-1.3,1.4l-9.6,21.6c-0.2,0.5-0.5,1.1-0.7,1.6
+		c-0.3,0.5-0.5,1.1-0.7,1.8c-0.1,0-0.2,0-0.2-0.1c-0.1-0.2-0.3-0.5-0.6-0.8c-1-1.2-2.1-2-3.3-2.5c-1.2-0.5-2.7-0.8-4.6-0.8
+		c-2.4,0-4.9,0.7-7.6,2.1c-2.7,1.4-5.1,3.3-7.4,6c-2.3,2.6-4,5.6-5.3,9c-1.1,3-1.6,5.7-1.6,8.3c0,1.3,0.2,2.6,0.5,3.9
+		c0.6,2.3,1.7,4.1,3.3,5.3c1.6,1.3,3.6,1.9,6.1,1.9c4,0,7.7-1.7,11.2-5.2c0.2-0.2,0.4-0.3,0.7-0.2c0.2,0.1,0.4,0.2,0.5,0.4
+		c0.7,1.4,1.9,2.6,3.5,3.6c1.6,0.9,3.5,1.4,5.7,1.4c3.8,0,6.9-1.3,9.6-3.7c0.7-0.6,1.3-1.3,2-2c0.4,1.3,1.1,2.4,2.2,3.4
+		c1.7,1.6,4.2,2.4,7.3,2.4c3.1,0,5.8-0.8,8.1-2.5c2.4-1.7,4.6-4.1,6.7-7.1c1-1.5,1.8-3,2.7-4.6c0.5-0.9,0.8-1.8,0.8-2.6
+		C79.4,465.7,79.1,465.1,78.7,464.7 M34.7,461.7c-0.9,1.9-1.4,2.9-1.5,3.1c-1,2.1-2.4,4.1-4.1,5.8c-1.7,1.7-3.4,3-5.1,4
+		c-1.7,0.9-3.1,1.4-4.1,1.4c-1.9,0-2.9-1.2-2.9-3.6c0-1.6,0.4-3.5,1.2-5.8c1.7-4.4,4.4-8,8.2-10.6c2.1-1.4,4.2-2.1,6-2.1
+		c1.1,0,1.9,0.3,2.6,0.8c0.7,0.5,1,1.3,1,2.3C36.1,458.3,35.6,459.8,34.7,461.7"/>
+	<path class="dolB" d="M71.6,441.5c1.3,0,2.5-0.5,3.4-1.4c0.9-0.9,1.4-2,1.4-3.4c0-1.3-0.5-2.5-1.4-3.4c-0.9-0.9-2.1-1.4-3.4-1.4
+		c-1.3,0-2.4,0.5-3.3,1.4c-0.9,0.9-1.4,2-1.4,3.4c0,1.3,0.5,2.5,1.4,3.4C69.2,441,70.4,441.5,71.6,441.5"/>
+	<path class="dolB" d="M185.9,441.5c1.3,0,2.5-0.5,3.4-1.4c0.9-0.9,1.4-2,1.4-3.4c0-1.3-0.5-2.5-1.4-3.4c-0.9-0.9-2.1-1.4-3.4-1.4
+		c-1.3,0-2.4,0.5-3.3,1.4c-0.9,0.9-1.4,2-1.4,3.4c0,1.3,0.5,2.5,1.4,3.4C183.5,441,184.7,441.5,185.9,441.5"/>
+	<path class="dolB" d="M251.3,441.5c1.3,0,2.5-0.5,3.4-1.4c0.9-0.9,1.4-2,1.4-3.4c0-1.3-0.5-2.5-1.4-3.4c-0.9-0.9-2.1-1.4-3.4-1.4
+		c-1.3,0-2.4,0.5-3.3,1.4c-0.9,0.9-1.4,2-1.4,3.4c0,1.3,0.5,2.5,1.4,3.4C248.9,441,250,441.5,251.3,441.5"/>
+	<path class="dolB" d="M334.9,464.7c-0.4-0.5-0.9-0.7-1.5-0.7c-0.8,0-1.4,0.4-1.8,1.1c-3.4,5.7-7.5,9.3-12.2,10.8c-2.1,0.7-4,1-5.9,1
+		c-2.8,0-5-0.8-6.6-2.3c-1.5-1.6-2.2-3.5-2.1-6c0-0.2,0.1-0.2,0.3-0.2c4.2-0.3,7.9-0.9,11.1-1.9c3.2-1,6-2.7,8.2-5.1
+		c2-2.1,3-4.4,3-6.8c0-2.3-0.9-4.3-2.6-5.9c-1.7-1.6-4-2.4-6.9-2.4c-3.7,0-7.3,1.3-10.7,3.8c-3.4,2.5-6.2,5.7-8.2,9.4
+		c-1.1,1.9-1.8,3.8-2.3,5.7c-3.2,5.6-6.4,9.1-9.3,10.7c-0.9,0.5-1.8,0.8-2.7,0.8c-0.8,0-1.5-0.2-2-0.6c-0.5-0.4-0.8-1-0.8-1.7
+		c0-0.3,0.1-0.6,0.2-1c0.6-1.9,1.5-4.2,2.8-7.1l1.4-3.5c1-2.5,1.4-4.8,1.4-6.9c0-2.8-0.8-5-2.5-6.6c-1.7-1.5-3.8-2.3-6.4-2.3
+		c-2.7,0-5,0.9-7.1,2.6c-0.3,0.3-0.3,0.2-0.2-0.2l0.2-0.3c0.3-0.5,0.2-1-0.1-1.4c-0.3-0.5-0.8-0.7-1.3-0.7h-5
+		c-0.7,0-1.3,0.2-1.9,0.6c-0.6,0.4-1,0.9-1.3,1.5l-7.2,16.1c-3.2,5.5-6.4,9.1-9.3,10.6c-0.9,0.5-1.7,0.8-2.7,0.8
+		c-0.8,0-1.5-0.2-2-0.6c-0.6-0.4-0.9-1-0.9-1.7c0-0.6,0.3-1.6,0.9-3c0.8-2,1.9-4.8,3.5-8.4c1.6-3.6,3.6-8.2,6.2-13.8
+		c0.2-0.5,0.2-1-0.1-1.5c-0.3-0.5-0.7-0.7-1.2-0.7h-5.1c-0.7,0-1.4,0.2-2,0.6c-0.6,0.4-1.1,0.9-1.3,1.6c-2.8,6.3-4.9,11-6.2,14
+		c-0.3,0.8-0.6,1.5-0.9,2.3c-1.9,3.3-3.8,5.8-5.5,7.5c-1.8,1.8-3.6,3.2-5.5,4c-1.5,0.9-3.6,1.6-6.4,2.2c-0.1,0.1-0.1,0.1-0.1,0
+		c0-0.1,0-0.1,0-0.2c3.2-7.1,7.7-17.1,13.4-29.9c0.1-0.2,0.2-0.4,0.2-0.6c0-0.4-0.2-0.8-0.4-1.1c-0.3-0.3-0.7-0.4-1.1-0.4h-5.1
+		c-0.7,0-1.3,0.2-1.9,0.6c-0.6,0.4-1,0.9-1.3,1.5l-0.7,1.6c-0.2,0.3-0.3,0.3-0.3,0.2c-1-1.3-2-2.3-3.1-2.9c-1.1-0.6-2.6-1-4.3-1.2
+		h-1.1c-2.4,0-4.9,0.7-7.6,2.1c-2.7,1.4-5.1,3.3-7.4,6c-2.3,2.6-4,5.6-5.3,9.1c-0.1,0.4-0.2,0.7-0.3,1.1c0,0-0.1,0.1-0.1,0.1
+		c-3.3,5.6-6.4,9.2-9.4,10.8c-0.9,0.5-1.7,0.8-2.7,0.8c-0.8,0-1.5-0.2-2-0.6c-0.6-0.4-0.9-1-0.9-1.7c0-0.6,0.3-1.6,0.9-3
+		c0.7-2,1.9-4.8,3.5-8.4c1.6-3.6,3.6-8.2,6.2-13.8c0.2-0.5,0.2-1-0.1-1.5c-0.3-0.5-0.7-0.7-1.2-0.7h-5.1c-0.7,0-1.4,0.2-2,0.6
+		c-0.6,0.4-1.1,0.9-1.3,1.6c-2.8,6.3-4.9,11-6.2,14c-0.3,0.8-0.6,1.5-0.9,2.2c-1.2,2.1-2.6,4.2-4.2,6.1c-1.6,2-3.3,3.5-5,4.4
+		c-0.9,0.5-1.7,0.8-2.7,0.8c-0.8,0-1.5-0.2-2-0.6c-0.6-0.4-0.9-1-0.9-1.7c0-0.6,0.2-1.4,0.6-2.3c0.4-1,0.6-1.6,0.7-1.8l2.7-7.1
+		c0.6-1.5,0.9-2.7,0.9-3.5c0-0.6-0.1-1.3-0.4-2c-0.4-0.9-1.1-1.6-1.9-2.1c-0.9-0.5-2-0.8-3.3-1.2c-1.5-0.3-4-0.9-7.6-2
+		c-0.1,0-0.2,0-0.2-0.1c-0.1-0.1-0.1-0.1,0-0.2l0.4-1.3c0.1-0.9,0.2-1.5,0.2-1.9c0-1.9-0.6-3.4-1.9-4.5c-1-1-2.2-1.4-3.7-1.4
+		c-0.5,0-1.1,0.1-1.7,0.2c-0.9,0.2-1.6,0.6-2.3,1.2c-0.6,0.6-1.1,1.3-1.4,2.1c-0.3,0.7-0.5,1.4-0.5,2.3c0,1,0.3,2.1,0.9,3.3
+		c0.7,1.2,1.7,2.3,3,3.1c0.2,0.1,0.3,0.2,0.2,0.4c-1.8,3.4-3.3,6.3-4.6,8.5c-0.1,0.1-0.1,0.1-0.2,0.2c-2.7,4.5-5.5,6.7-8.6,6.7
+		c-0.8,0-1.7-0.2-2.7-0.5c-0.1-0.2-0.1-0.3-0.1-0.3c2-3.6,3-7.3,3-11c0-3.8-1.1-6.9-3.3-9.3c-2.2-2.4-5.1-3.6-8.7-3.6
+		c-3.9,0-7.5,1.2-11.1,3.7c-3.5,2.5-6.3,5.6-8.4,9.4c-2,3.4-3,6.9-3,10.5c0,2.6,0.6,4.9,1.7,7c1.1,2.1,2.7,3.7,4.7,4.9
+		c2,1.2,4.3,1.8,6.9,1.8c2.4,0,4.8-0.6,7.2-1.8c2.4-1.2,4.7-3,6.8-5.4c0.1-0.2,0.3-0.2,0.5-0.1c1.7,0.6,3.3,1,5.1,1
+		c2.5,0,4.9-0.7,7-2.1c2.1-1.4,3.9-3.3,5.4-5.9c0.1-0.1,0.1-0.2,0.2-0.2l6.2-10.9c0.1-0.3,0.2-0.4,0.3-0.4c0.1,0,0.3,0,0.5,0.1
+		c2.6,1.1,4.3,1.9,5.3,2.4c0.3,0.2,0.5,0.5,0.5,0.9c0,0.2,0,0.3-0.1,0.4c-1.6,3.8-2.9,7.1-3.9,10c-0.4,1.2-0.6,2.4-0.6,3.5
+		c0,0.9,0.1,1.7,0.3,2.3c0.6,2,1.8,3.5,3.5,4.5c1.7,1,3.7,1.5,6,1.5c3.1,0,5.8-0.8,8.2-2.5c1.2-0.9,2.4-1.9,3.5-3.2
+		c0.4,1.2,1.1,2.4,2.2,3.3c1.7,1.6,4.2,2.4,7.3,2.4c3.1,0,5.8-0.8,8.1-2.5c1.9-1.3,3.6-3.1,5.3-5.3c0,0.2,0.1,0.4,0.1,0.6
+		c0.6,2.5,1.8,4.3,3.5,5.5c1.7,1.2,3.8,1.8,6.3,1.7c0.1,0,0.2,0,0.2,0.1c0,0.1,0,0.1-0.1,0.2c-8.4,2.4-12.6,6-12.6,11
+		c0,2,0.8,3.6,2.4,5c1.6,1.3,3.8,2,6.6,2c4.3,0,7.9-1.3,10.5-4c2.7-2.7,5.1-6.4,7.2-11.1c0.1-0.2,0.3-0.3,0.5-0.3
+		c2.6-0.6,4.7-1.2,6.5-1.7c1.8-0.5,3.6-1.3,5.4-2.3c2.3-1.4,4.3-2.9,5.9-4.7c0.4,1.3,1.1,2.5,2.2,3.5c1.7,1.6,4.2,2.4,7.3,2.4
+		c2.6,0,5-0.7,7.1-1.9c-0.1,0.4-0.1,0.8,0.2,1.2c0.3,0.5,0.7,0.7,1.2,0.7h5.1c0.7,0,1.3-0.2,1.9-0.6c0.6-0.4,1-0.9,1.3-1.6l1.5-3.3
+		l4.7-10.8c1.4-3.4,3.4-6.6,5.9-9.5c2.5-2.9,5-4.4,7.5-4.4c1.3,0,2,0.7,2,2c0,1-0.3,2.2-1,3.8L277,462c-1.5,3.5-2.6,6.3-3.3,8.2
+		c-0.6,1.9-0.9,3.4-0.9,4.7c0,2.6,0.9,4.7,2.7,6.1c1.8,1.5,4,2.2,6.8,2.2h0.3c3.1-0.1,5.8-0.9,8.1-2.6c2.1-1.5,4.1-3.6,6-6.3
+		c0.6,2,1.7,3.8,3.2,5.3c2.6,2.5,6.2,3.8,10.9,3.8c10.1,0,18.1-4.8,23.9-14.5c0.5-0.9,0.8-1.8,0.8-2.6
+		C335.6,465.8,335.3,465.2,334.9,464.7 M306.3,463.3c1-2.4,2.5-4.4,4.3-6.1c1.9-1.7,3.9-2.8,6-3.5c1.2-0.3,2-0.4,2.5-0.4
+		c1.4,0,2.2,0.6,2.2,1.8c0,0.6-0.2,1.2-0.6,1.9c-0.4,0.7-1,1.3-1.6,1.9c-2.4,2.1-6.6,3.6-12.6,4.5c0,0.1-0.1,0.1-0.2,0
+		C306.2,463.4,306.2,463.3,306.3,463.3 M113.6,452.7c-1.3,1-2.2,2.2-2.9,3.8c-0.6,1.6-0.9,3.3-0.9,5.1c0,2,0.4,4.1,1.1,6.2
+		c0.6,1.7,1.5,3.3,2.7,4.7c0.2,0.2,0.2,0.3,0,0.5c-1.2,1.1-2.5,1.9-3.8,2.4c-1.3,0.5-2.6,0.8-3.7,0.8c-1.8,0-3.3-0.6-4.5-1.8
+		c-1.2-1.2-1.8-2.9-1.8-5.1c0-1.1,0.1-2.1,0.4-3.1c1-4.4,2.8-7.8,5.3-10.2c2.5-2.3,5.2-3.6,8-3.7
+		C113.9,452.4,113.9,452.5,113.6,452.7 M118.5,466.7c-0.1,0-0.1,0.1-0.2,0.1c-0.1,0-0.1,0-0.1,0c-1.1-1.9-1.6-3.9-1.6-6.1
+		c0-0.8,0.1-1.3,0.2-1.7c0.1-0.7,0.3-1.3,0.7-1.7c0.4-0.5,0.8-0.7,1.2-0.7c0.3,0,0.6,0.2,0.9,0.5c0.3,0.3,0.5,0.8,0.6,1.4l0.1,1
+		C120.3,461.8,119.7,464.2,118.5,466.7 M140.8,449.8l-0.2,0.8c-0.1,0.3-0.2,0.3-0.4,0.2c-0.3-0.2-0.6-0.5-0.7-0.9
+		c-0.2-0.3-0.2-0.6-0.2-1v-0.4c0.2-0.3,0.4-0.5,0.7-0.6h0.2c0.1,0,0.3,0.1,0.5,0.2c0.2,0.2,0.2,0.5,0.2,1
+		C140.9,449.3,140.9,449.6,140.8,449.8 M202.6,488.4c-1,2.2-2.2,4.1-3.6,5.8c-1.4,1.7-3.1,2.5-5,2.5c-0.8,0-1.5-0.2-2-0.7
+		c-0.5-0.5-0.8-1-0.8-1.6c0-1,0.5-1.9,1.5-2.9c1.2-1.1,3-1.9,5.4-2.4c-0.2,0.1,1.2-0.2,4.3-0.9C202.6,488.2,202.7,488.3,202.6,488.4
+		 M215.5,459c-0.2,0.6-0.8,1.8-1.6,3.7l-1.4,3.1c-3.8,7.3-7.9,11-12.5,11c-1.1,0-2-0.4-2.7-1c-0.7-0.7-1-1.7-1-3.1
+		c0-1.6,0.4-3.5,1.2-5.7c1.8-4.6,4.6-8.2,8.4-10.8c2.2-1.4,4.3-2.2,6.2-2.2c1.1,0,2,0.3,2.7,0.8c0.7,0.6,1,1.4,1,2.5
+		C215.9,457.8,215.8,458.4,215.5,459"/>
+	<path class="dolB" d="M470.2,441.5c1.3,0,2.5-0.5,3.4-1.4c0.9-0.9,1.4-2,1.4-3.4c0-1.3-0.5-2.5-1.4-3.4c-0.9-0.9-2.1-1.4-3.4-1.4
+		c-1.3,0-2.4,0.5-3.3,1.4c-0.9,0.9-1.4,2-1.4,3.4c0,1.3,0.5,2.5,1.4,3.4C467.8,441,468.9,441.5,470.2,441.5"/>
+	<path class="dolB" d="M580.4,464.7c-0.4-0.5-0.9-0.7-1.5-0.7c-0.8,0-1.4,0.4-1.8,1.1c-3.4,5.7-7.5,9.3-12.2,10.8c-2.1,0.7-4,1-5.9,1
+		c-2.8,0-5-0.8-6.6-2.3c-1.5-1.6-2.2-3.5-2.1-6c0-0.2,0.1-0.2,0.3-0.2c4.2-0.3,7.9-0.9,11.1-1.9c3.2-1,6-2.7,8.2-5.1
+		c2-2.1,3-4.4,3-6.8c0-2.3-0.9-4.3-2.6-5.9c-1.7-1.6-4-2.4-6.9-2.4c-3.7,0-7.3,1.3-10.7,3.8c-3.4,2.6-6.2,5.7-8.2,9.4
+		c-1.1,2-1.9,3.9-2.4,5.9c-3.4,5.5-6.4,9-9.2,10.5c-0.9,0.5-1.8,0.8-2.7,0.8c-1.1,0-2-0.5-2.7-1.4c-0.7-1-1-2.4-1-4.3
+		c0-2.8,0.7-6.1,2.1-9.9c-0.1,0.3,0.6-1.4,2.1-5.3c0.1-0.2,0.2-0.4,0.3-0.5c1.8-2.3,3-3.6,3.5-4.2c3.5-4.3,6.2-7.6,8.1-10.1
+		c1.9-2.4,3.4-4.7,4.6-6.8c1.5-2.8,2.3-5.3,2.3-7.4c0-2.1-0.8-3.6-2.3-4.5c-0.6-0.3-1.3-0.5-1.9-0.5c-2.5,0-5.3,1.9-8.5,5.7
+		c-3.2,3.8-6.3,8.5-9.4,14.3c-3,5.7-5.5,11.4-7.4,16.9c-0.8,2.2-1.4,4.5-1.8,6.6c-1.3,2.2-2.7,4.3-4.3,6.3c-1.6,2-3.3,3.5-5,4.4
+		c-0.8,0.5-1.7,0.7-2.7,0.7c-0.9,0-1.6-0.2-2.1-0.6c-0.5-0.4-0.8-1-0.8-1.7c0-0.4,0.1-0.8,0.2-1c0.9-2.5,2.2-5.6,3.8-9.3
+		c1.6-3.8,3.8-8.7,6.6-14.7c0.2-0.5,0.2-1-0.1-1.5c-0.3-0.5-0.7-0.7-1.3-0.7h-5.1c-0.7,0-1.3,0.2-1.9,0.6c-0.6,0.4-1,0.9-1.4,1.6
+		c-0.5,1.1-0.8,1.7-0.8,1.9h-0.2c-0.1-0.1-0.2-0.3-0.4-0.6c-0.2-0.3-0.5-0.6-0.9-1c-0.9-0.9-1.9-1.6-3.1-2c-1.1-0.4-2.5-0.6-4.3-0.6
+		c-2.4,0-5,0.7-7.6,2.1c-2.7,1.4-5.2,3.3-7.4,6c-2.3,2.6-4,5.6-5.3,9c-0.2,0.5-0.3,0.9-0.4,1.3c-3.2,5.6-6.4,9.1-9.3,10.7
+		c-0.9,0.5-1.7,0.8-2.7,0.8c-0.8,0-1.5-0.2-2-0.6c-0.6-0.4-0.9-1-0.9-1.7c0-0.6,0.3-1.6,0.9-3c0.8-2,1.9-4.8,3.5-8.5
+		c1.6-3.6,3.6-8.2,6.2-13.8c0.2-0.5,0.2-1-0.1-1.5c-0.3-0.5-0.7-0.7-1.3-0.7h-5.1c-0.7,0-1.4,0.2-2,0.6c-0.6,0.4-1.1,0.9-1.3,1.6
+		c-2.8,6.3-4.9,11-6.2,14c-1.3,3-2.4,5.8-3.2,8.3c-0.3,0.8-0.4,1.6-0.5,2.4c-0.2,0.2-0.4,0.4-0.7,0.6c-7.9,6.3-18.2,2.2-21.6,0.5
+		c2.2-2.3,4.5-4.9,7-7.9c0.8-0.9,4.1-5,9.7-12.1c2.3,0.5,4.6,0.2,6.1-0.6c1-0.5,1.8-1.2,2.4-2c0.5-0.8,0.8-1.7,0.8-2.6
+		c0-1.2-0.5-2.3-1.3-3.2c-0.9-0.9-2-1.3-3.4-1.3c-0.9,0-1.7,0.2-2.4,0.4c-1.5,0.5-3,1.6-4.7,3c-3.3-1.5-6.1-2.6-8.4-3.3
+		c-5.4-1.8-10.2-1.7-13.4,0.9c-1.8,1.4-2.8,3.4-2.8,5.8c0,1.4,0.3,2.6,1,3.6c0.7,1,1.5,1.8,2.6,2.4c2.3,1.2,5,1.1,7.2-0.4
+		c0.9-0.7,1.3-1.4,1.3-2.3c0-0.6-0.2-1.2-0.7-1.6c-0.8-0.8-2.1-0.8-3.2-0.1c-0.5,0.3-1.3,0.3-1.9-0.3c-0.3-0.3-0.5-0.6-0.5-1
+		c0-0.7,0.2-1.1,0.7-1.4c1.5-0.9,4.9-0.7,8.8,0.3c1.7,0.4,3.4,0.9,5,1.5c-2.4,2.4-5,5.2-7.8,8.3l-0.7,0.7c-1.3,1.4-3.7,4.1-7.1,7.9
+		l-1.4,1.6c-5-2-8.7-1.5-10.9,0.7c-0.9,0.9-1.5,1.9-1.8,3c-0.4,0.3-0.9,0.6-1.3,0.8c-0.8,0.5-1.7,0.7-2.7,0.7
+		c-0.9,0-1.6-0.2-2.1-0.6c-0.5-0.4-0.8-1-0.8-1.7c0-0.4,0.1-0.8,0.2-1c0.9-2.5,2.2-5.6,3.8-9.3c1.6-3.8,3.8-8.7,6.6-14.7
+		c0.2-0.5,0.2-1-0.1-1.5c-0.3-0.5-0.7-0.7-1.3-0.7h-5.1c-0.7,0-1.3,0.2-1.9,0.6c-0.6,0.4-1,0.9-1.4,1.6c-0.5,1.1-0.8,1.7-0.8,1.9
+		h-0.2c-0.1-0.1-0.2-0.3-0.4-0.6c-0.2-0.3-0.5-0.6-0.9-1c-0.9-0.9-1.9-1.6-3.1-2c-1.1-0.4-2.5-0.6-4.3-0.6c-2.4,0-5,0.7-7.6,2.1
+		c-2.7,1.4-5.2,3.3-7.4,6c-2.3,2.6-4,5.6-5.3,9c-0.2,0.5-0.3,1.1-0.5,1.6c-3.3,5.5-6.4,8.9-9.2,10.4c-0.9,0.5-1.8,0.8-2.7,0.8
+		c-1.1,0-2-0.5-2.7-1.4c-0.7-1-1-2.4-1-4.3c0-2.8,0.7-6.1,2.1-9.9c-0.1,0.3,0.6-1.4,2.1-5.3c0.1-0.2,0.2-0.4,0.3-0.5
+		c1.8-2.3,3-3.6,3.5-4.2c3.5-4.3,6.2-7.6,8.1-10.1c1.9-2.4,3.4-4.7,4.6-6.8c1.5-2.8,2.2-5.3,2.2-7.4c0-2.1-0.7-3.6-2.2-4.5
+		c-0.6-0.3-1.3-0.5-1.9-0.5c-2.5,0-5.3,1.9-8.5,5.7c-3.2,3.8-6.3,8.5-9.4,14.3c-3,5.7-5.5,11.4-7.4,16.9c-1.5,4.2-2.3,8.2-2.3,12.1
+		c0,3.8,0.8,6.9,2.5,9.2c1.7,2.3,4.3,3.5,7.7,3.5c3.1,0,5.8-0.9,8.1-2.6c1.9-1.4,3.6-3.1,5.3-5.3c0,0.2,0.1,0.4,0.1,0.6
+		c0.6,2.3,1.7,4.1,3.2,5.4c1.6,1.3,3.6,1.9,6,1.9c4,0,7.7-1.7,11.2-5.2c0.2-0.2,0.4-0.3,0.7-0.2c0.2,0.1,0.4,0.2,0.5,0.4
+		c0.7,1.4,1.9,2.6,3.5,3.6c1.6,0.9,3.5,1.4,5.7,1.4c2.9,0,5.5-0.8,7.8-2.3c0.1,0.1,0.1,0.1,0.1,0.2c1.3,1.3,3,1.9,5.2,1.9
+		c2.4,0,5.1-1.2,7.9-3.4c1.3,0.8,2.6,1.5,3.8,2c0.2,0.1,0.5,0.3,0.7,0.4c1,0.5,2.1,0.9,3.3,1.3c1,0.3,2,0.6,2.9,0.8l1.5,0.4l0.5,0
+		c8.7,1.2,14.2-2.8,16.2-4.5c0.3,0.3,0.5,0.7,0.9,1c1.7,1.6,4.2,2.4,7.3,2.4c3.1,0,5.8-0.8,8.1-2.5c1.9-1.3,3.7-3.1,5.4-5.3
+		c0,0.2,0.1,0.4,0.1,0.6c0.6,2.3,1.7,4.1,3.2,5.4c1.6,1.3,3.6,1.9,6,1.9c4,0,7.7-1.7,11.2-5.2c0.2-0.2,0.4-0.3,0.7-0.2
+		c0.2,0.1,0.4,0.2,0.5,0.4c0.7,1.4,1.9,2.6,3.5,3.6c1.6,0.9,3.5,1.4,5.7,1.4c3.8,0,6.9-1.2,9.6-3.7c1.5-1.4,3-3.2,4.5-5.3
+		c0.4,2.2,1.1,4.1,2.2,5.6c1.7,2.3,4.2,3.5,7.7,3.5c3.1,0,5.8-0.9,8.1-2.6c2.1-1.6,4.1-3.7,6-6.3c0.6,2,1.7,3.8,3.2,5.4
+		c2.6,2.5,6.2,3.8,10.9,3.8c10.1,0,18.1-4.8,23.9-14.5c0.5-0.9,0.8-1.8,0.8-2.6C581,465.8,580.8,465.2,580.4,464.7 M551.8,463.3
+		c1-2.4,2.5-4.4,4.3-6.1c1.9-1.7,3.9-2.8,6-3.5c1.2-0.3,2-0.4,2.5-0.4c1.4,0,2.2,0.6,2.2,1.8c0,0.6-0.2,1.2-0.6,1.9
+		c-0.4,0.7-1,1.3-1.6,1.9c-2.4,2.1-6.6,3.6-12.5,4.5c-0.1,0.1-0.1,0.1-0.2,0C551.7,463.4,551.7,463.3,551.8,463.3 M536.3,441
+		c2-4.7,3.7-8.2,5.2-10.5c1.6-2.2,2.5-3.3,2.9-3.3c0.3,0,0.3,0.6-0.1,1.7c-0.4,1.1-0.8,2.2-1.4,3.1c-1.3,2.4-3.5,5.4-6.4,9.1
+		c-0.1,0.1-0.1,0.1-0.2,0C536.3,441.1,536.3,441,536.3,441 M365.6,441c2-4.7,3.7-8.2,5.2-10.5c1.6-2.2,2.5-3.3,2.9-3.3
+		c0.3,0,0.3,0.6-0.1,1.7c-0.4,1.1-0.8,2.2-1.4,3.1c-1.3,2.4-3.5,5.4-6.4,9.1c-0.1,0.1-0.1,0.1-0.2,0
+		C365.6,441.1,365.6,441,365.6,441 M394.8,464.9c-1,2.2-2.4,4.2-4.1,5.9c-1.7,1.7-3.4,3-5.1,4c-1.7,0.9-3.1,1.4-4.1,1.4
+		c-1.9,0-2.9-1.2-2.9-3.6c0-1.7,0.4-3.6,1.2-5.8c1.7-4.5,4.4-8.1,8.2-10.7c2.1-1.4,4.1-2.1,6-2.1c1.1,0,2,0.3,2.7,0.8
+		c0.6,0.5,1,1.3,1,2.4C397.6,458.5,396.7,461.1,394.8,464.9 M413.4,477.1c-0.3,0-0.4,0-0.5-0.1c-0.1-0.1-0.1-0.1-0.1-0.2
+		c0-0.1,0-0.2,0.3-0.5c0.3-0.2,0.7-0.3,1.4-0.3c0.4,0,0.9,0.1,1.4,0.2C414.9,476.8,414.1,477.1,413.4,477.1 M497.2,464.9
+		c-1,2.2-2.4,4.2-4.1,5.9c-1.7,1.7-3.4,3-5.1,4c-1.7,0.9-3.1,1.4-4.1,1.4c-1.9,0-2.9-1.2-2.9-3.6c0-1.7,0.4-3.6,1.2-5.8
+		c1.7-4.5,4.4-8.1,8.2-10.7c2.1-1.4,4.1-2.1,6-2.1c1.1,0,2,0.3,2.7,0.8c0.6,0.5,1,1.3,1,2.4C500,458.5,499.1,461.1,497.2,464.9"/>
+</g>
+</svg>
+<div class="intestazione"><p class="occhiello">Scheda prodotto</p>
+<h1>Stracchino fresco Etrusco</h1>
+<p class="denominazione">Selezione DOL · Lazio</p>
+</div></header>
+<div class="corpo">
+<div><figure><img src="data:image/jpeg;base64,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" alt="Stracchino fresco Etrusco"></figure></div>
+<div><section><h2>Il prodotto</h2><p>Prodotto senza additivi e conservanti. Prodotto con latte vaccino fresco. Ha una consistenza cremosa dal sapore dolce, presentando allo stesso tempo un leggero gusto acidulo, tipico del prodotto. Ciò che rende unico questo prodotto è la semplicità degli ingredienti: latte intero, caglio e sale e l’assenza di additivi e conservanti</p></section>
+<section><h2>Identità</h2><dl class="dati"><dt>Ingredienti</dt><dd>latte intero, caglio e sale</dd><dt>Allergeni</dt><dd>LATTE e derivati</dd><dt>Origine</dt><dd>Lazio</dd></dl></section>
+<section><h2>Conservazione</h2><p>Conservare a +4/+8 °C.</p></section>
+</div></div>
+<div class="corpo" style="padding-top:0"><div style="grid-column:1/-1">
+
+
+<section><h2>Valori nutrizionali</h2><div class="tabella-wrap"><table>
+<thead><tr><th>Valori medi per 100 g</th><th style="text-align:right"></th></tr></thead><tbody>
+<tr class="totale"><td>Energia</td><td class="num">384 kcal / 1594 kJ</td></tr>
+<tr><td>Grassi</td><td class="num">31.0 g</td></tr>
+<tr><td>&nbsp;&nbsp;di cui acidi grassi saturi</td><td class="num">20 g</td></tr>
+<tr><td>Carboidrati</td><td class="num">1.8 g</td></tr>
+<tr><td>&nbsp;&nbsp;di cui zuccheri</td><td class="num">1.8 g</td></tr>
+<tr><td>Proteine</td><td class="num">24.5 g</td></tr>
+<tr><td>Sale</td><td class="num">—</td></tr>
+</tbody></table></div>
+<p class="fonte">Valori medi indicativi, calcolati sulla composizione tipica del prodotto.</p></section>
+
+</div></div>
+<div class="corpo" style="padding-top:0"><div style="grid-column:1/-1">
+<section class="corr"><h2>C'è qualcosa da correggere?</h2>
+<p class="fonte">Scrivi qui cosa non va in questa scheda. Si salva da solo e lo ritrovi
+nell'elenco dei prodotti, da dove si manda tutto insieme.</p>
+<div id="tag"><button class="tag">Ingredienti</button><button class="tag">Stagionatura</button><button
+class="tag">Pezzatura</button><button class="tag">Conservazione</button><button class="tag">Descrizione</button><button
+class="tag">Foto</button><button class="tag">Valori nutrizionali</button></div>
+<textarea id="nota" placeholder="Es. la stagionatura è di 6 mesi, non 12"></textarea>
+<p><span class="stato" id="stato"></span></p></section>
+</div></div>
+<footer><div><b>DOL – Di Origine Laziale S.r.l.</b><br>Via Domenico Panaroli 27, 00171 Roma · P.IVA 13482711002<br>dol@dioriginelaziale.it · +39 06 69277234</div>
+<div class="rev">Catalogo 2026, pag. 17 · revisione 09/2026</div></footer>
+</article></div>
+<script>
+(function(){ // nota di correzione: resta sul dispositivo e viene spedita al server
+ var K='dol_corr_v1', PG=17, NOME="Stracchino fresco Etrusco", COD="1800";
+ var SUPA='https://dmgnzqxcrmcgpmtkimbs.supabase.co/rest/v1';
+ var CHIAVE='sb_publishable_0-1VQk1y3JciXKdWoowvPA_F3V5Ab51';   // chiave pubblicabile: puo' solo scrivere qui
+ var ta=document.getElementById('nota'), st=document.getElementById('stato');
+ // si spedisce solo dal sito pubblicato: da una copia locale o da un'anteprima resta tutto sul dispositivo
+ var online=location.protocol==='https:'&&/github\.io$/.test(location.hostname);
+ function disp(){var d=null; try{d=localStorage.getItem('dol_disp')}catch(e){}
+  if(!d){d='d'+Math.random().toString(36).slice(2,10)+Date.now().toString(36);
+   try{localStorage.setItem('dol_disp',d)}catch(e){} } return d;}
+ function sospesi(){try{return JSON.parse(localStorage.getItem('dol_sospesi_v1')||'[]')}catch(e){return []}}
+ function segna(pg,manca){var l=sospesi().filter(function(x){return x!==pg});
+  if(manca) l.push(pg); try{localStorage.setItem('dol_sospesi_v1',JSON.stringify(l))}catch(e){} }
+ function spedisci(testo){
+  if(!online){return}
+  fetch(SUPA+'/rpc/dol_salva_correzione',{method:'POST',
+   headers:{apikey:CHIAVE,Authorization:'Bearer '+CHIAVE,'content-type':'application/json'},
+   body:JSON.stringify({p_dispositivo:disp(),p_pagina:PG,p_prodotto:NOME,p_codice:COD,p_testo:testo})})
+  .then(function(r){ if(r.ok){segna(PG,false); st.textContent=testo?'Inviato ✓':'Correzione ritirata';}
+                     else{segna(PG,true); st.textContent='Salvato qui, non sono riuscito a inviarlo';} })
+  .catch(function(){segna(PG,true); st.textContent='Salvato qui, lo invio appena torna la rete';});
+ }
+ function leggi(){try{return JSON.parse(localStorage.getItem(K)||'{}')}catch(e){return {}}}
+ var d=leggi(); if(d[PG]) ta.value=d[PG];
+ var t=null;
+ ta.addEventListener('input',function(){
+  clearTimeout(t); st.textContent='';
+  t=setTimeout(function(){
+   var d=leggi(), v=ta.value.trim();
+   if(v) d[PG]=v; else delete d[PG];
+   try{localStorage.setItem(K,JSON.stringify(d)); st.textContent=v?'Salvato ✓':'Correzione cancellata';}
+   catch(e){st.textContent='Non riesco a salvare su questo browser';}
+   spedisci(v);
+  },400);
+ });
+ document.getElementById('tag').addEventListener('click',function(e){
+  var b=e.target.closest('.tag'); if(!b) return;
+  var v=ta.value.replace(/\s+$/,'');
+  ta.value=(v?v+'\n':'')+b.textContent+': ';
+  ta.focus(); ta.setSelectionRange(ta.value.length,ta.value.length);
+  ta.dispatchEvent(new Event('input'));
+ });
+ if(online&&sospesi().indexOf(PG)>=0&&ta.value.trim()) spedisci(ta.value.trim());
+})();
+(function(){var b=document.getElementById('back');if(!b)return;
+var interno=document.referrer&&document.referrer.indexOf(location.origin)===0;
+if(interno){b.addEventListener('click',function(e){e.preventDefault();history.back();});}
+})();
+</script>
